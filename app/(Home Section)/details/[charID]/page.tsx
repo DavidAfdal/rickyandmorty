@@ -26,6 +26,9 @@ const QUERY = gql`
         species
         gender
         type
+        episode {
+          name
+        }
       }
     }
   }
@@ -57,6 +60,7 @@ export default function DetailPage({ params }: DetailPageProps) {
       species: character?.species ?? '',
       gender: character?.gender ?? '',
       type: character?.type ?? '',
+      episode: character?.episode ?? [],
     };
     StoreLocation({
       title: formData.get('title') as string,
@@ -99,7 +103,7 @@ export default function DetailPage({ params }: DetailPageProps) {
               </div>
               <div className="flex flex-col">
                 <p className="text-neutral-400">First seen in :</p>
-                <p>Close Rick-counters of the Rick Kind</p>
+                <p>{character?.episode.length !== 0 ? character?.episode[0].name : ""}</p>
               </div>
               {GetLocationTitleByCharacterId(decodeURIComponent(params.charID)) !== "" ? (
                 <div className="flex flex-col">

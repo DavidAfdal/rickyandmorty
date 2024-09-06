@@ -6,6 +6,12 @@ export interface Character {
     species: string;
     type: string;
     gender:string;
+    episode: Episode[]
+  }
+
+
+  export interface Episode {
+    name: string;
   }
   
   export interface CharacterDatas {
